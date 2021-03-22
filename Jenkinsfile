@@ -39,7 +39,6 @@ pipeline {
                             gcloud container clusters get-credentials ${GKE_CLUSTER_NAME} --zone ${GKE_CLUSTER_ZONE} && \
                             kubectl get po""")
                     sh("echo 'test2' && kubectl get po")
-
                 }
             }
         }
