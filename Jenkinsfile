@@ -36,7 +36,7 @@ pipeline {
                             gcloud config set project "${PROJECT_ID}" && \
                             gcloud config set container/cluster "${CLUSTER_NAME}" && \
                             gcloud config set compute/zone "${LOCATION}" && \
-                            gcloud container clusters get-credentials "${GKE_CLUSTER_NAME}" --zone "${GKE_CLUSTER_ZONE}" && \
+                            gcloud container clusters get-credentials "${CLUSTER_NAME}" --zone "${LOCATION}" && \
                             kubectl get po""")
                     sh("echo 'test2' && kubectl get po")
                 }
