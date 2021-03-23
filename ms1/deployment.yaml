@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: ms1-deployment
-        image: eu.gcr.io/fourth-memento-307608/test:5
+        image: eu.gcr.io/fourth-memento-307608/test:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
