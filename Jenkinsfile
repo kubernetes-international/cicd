@@ -22,7 +22,8 @@ pipeline {
                             gcloud config set compute/zone "${LOCATION}" && \
                             gcloud container clusters get-credentials "${CLUSTER_NAME}" --zone "${LOCATION}" && \
                         """)
-                    sh("kubectl apply -f ms1/*")
+                    sh("ls -la")
+                    sh("kubectl apply -f ms1/deployment.yaml")
                 }
             }
         }
