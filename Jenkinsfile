@@ -5,6 +5,7 @@ pipeline {
         CLUSTER_NAME = 'cluster-1'
         LOCATION = 'us-central1-c'
         CREDENTIALS_ID = 'gke-admin'
+        NAMESPACE = 'default'
     }
     stages {
         stage("Checkout code") {
@@ -12,23 +13,6 @@ pipeline {
                 checkout scm
             }
         }
-        // stage("Build image") {
-        //     steps {
-        //         script {
-        //             myapp = docker.build("DOCKER-HUB-USERNAME/hello:${env.BUILD_ID}")
-        //         }
-        //     }
-        // }
-        // stage("Push image") {
-        //     steps {
-        //         script {
-        //             docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-        //                     myapp.push("latest")
-        //                     myapp.push("${env.BUILD_ID}")
-        //             }
-        //         }
-        //     }
-        // }        
         stage('Deploy to GKE') {
             steps{
                 withCredentials([file(credentialsId: 'gke-admin', variable: 'GC_KEY')]) {
@@ -37,8 +21,8 @@ pipeline {
                             gcloud config set container/cluster "${CLUSTER_NAME}" && \
                             gcloud config set compute/zone "${LOCATION}" && \
                             gcloud container clusters get-credentials "${CLUSTER_NAME}" --zone "${LOCATION}" && \
-                            kubectl get po""")
-                    sh("echo 'test2' && kubectl get po")
+                        """)
+                    sh("kubectl apply -f ms1/*")
                 }
             }
         }
