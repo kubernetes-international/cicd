@@ -24,6 +24,8 @@ pipeline {
                         """)
                     sh("cat ms1/deployment.yaml | envsubst | kubectl apply -f - ")
                     sh("cat ms1/service.yaml | envsubst | kubectl apply -f - ")
+                    sh("cat ms2/deployment.yaml | envsubst | kubectl apply -f - ")
+                    sh("cat ms2/service.yaml | envsubst | kubectl apply -f - ")
                 }
             }
         }

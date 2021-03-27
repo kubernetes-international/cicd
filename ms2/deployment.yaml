@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms2-deployment
+  namespace: ${NAMESPACE}
+spec:
+  selector:
+    matchLabels:
+      app: ms2-deployment
+  template:
+    metadata:
+      labels:
+        app: ms2-deployment
+    spec:
+      containers:
+      - name: ms2-deployment
+        image: eu.gcr.io/fourth-memento-307608/ms2:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: "gcr-creds"
